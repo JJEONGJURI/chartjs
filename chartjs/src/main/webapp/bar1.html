@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- /chartjs/src/main/webapp/bar1.html 
+	chartjs : Dynamic Web Project 생성 =>그래프 작성
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>간단한 막대 그래프 작성</title>
+</head>
+<body>
+<div>
+<!-- canvas 태그 : 그래프가 그려지는 영역. -->
+	<canvas id="myChart"></canvas>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"> //src 는 버전 바꾸면 됨 ﻿https://cdnjs.com/libraries/Chart.js 원하는거로
+</script>
+<script type="text/javascript">
+	const ctx = document.getElementById("myChart") //canvas영역. 그래프 작성 영역
+	new Chart(ctx,{
+		//bar : 막대그래프 
+		//line : 선그래프
+		//pie : 파이그래프
+		//donut : 도넛그래프
+		type:'bar', //그래프 type 내가 원하는거 하면 됨 bar도 됨 
+		
+		//그래프 작성을 위한 데이터
+		data : {
+			labels : ['Red','Blue','Yellow','Green','Purple','Orange'],
+			//labels : x축 값
+			datasets : [{
+				//datasets : 데이터 부분 - 배열로 처리돼있다.
+				label:'# of Votes',
+				data : [12,19,3,5,2,3],
+				borderWidth : 1,
+				backgroundColor : ['red','blue','yellow','green','purple','orange']
+			},
+			{
+				//datasets : 데이터 부분 - 배열로 처리돼있다.
+				label:'# of Votes2',
+				data : [5,9,1,10,15,3],
+				borderWidth : 1,
+				backgroundColor : ['red','blue','yellow','green','purple','orange']
+			
+			}]
+		},
+		//전체 그래프 출력 형태
+		options : { //그래프 출력시 처리되는 다양한 옵션 설정
+			//beginAtZero : x축의 값이 0 부터 시작할 수 있는 이유
+			scales : {y:{beginAtZero:true}},
+			legend : {position : 'right'},
+			responsive : true
+		}
+	})
+</script>
+</body>
+</html>
