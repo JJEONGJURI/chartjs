@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- /chartjs/src/main/webapp/pie.html -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>파이(도넛)그래프</title>
+</head>
+<body>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js">
+		
+	</script>
+<div style="width: 75%">
+	<canvas id="canvas"></canvas>
+</div>
+<script type="text/javascript">
+	let MONTHS = [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월',
+			'11월', '12월' ];
+	let randomScalingFactor = function() {
+		return Math.round(Math.random() * 100) //0~100 사이의 임의의 수
+	}
+	let config = { // 데이터
+		type : "doughnut", //pie라고해도됨 pie랑 doughnut 차이는 중간이 비어있는 유무
+		data : {
+			datasets : [ {
+				//개월 수만큼 가져옴
+				data : [ randomScalingFactor(), randomScalingFactor(),
+						randomScalingFactor(), randomScalingFactor(),
+						randomScalingFactor(), randomScalingFactor(),
+						randomScalingFactor(), randomScalingFactor(),
+						randomScalingFactor(), randomScalingFactor(),
+						randomScalingFactor(), randomScalingFactor() ],
+				backgroundColor : [ 'red', 'orange', 'yellow', 'green', 'blue',
+						'FFEEFE', 'navy', 'lime', 'pink', 'aqua', '#FFFF00',
+						'#FF00FF' ],
+				label : '파이(도넛) 그래프' //범례는 MONTHS 부분이 들어간다.
+			} ],
+			labels : MONTHS
+		},
+		options : {
+			responsive : true,
+			legend : {
+				position : 'top'
+			},
+			title : {
+				display : true,
+				text : '파이(도넛) 그래프 연습'
+			},
+			animation : { //모양 예쁘게 처리
+				animateScale : true, // 새로고침할 때 작은원이 커짐 / false로 하면 원크기 그대로임
+				animateRotate : true // 새로고침할 때 원이 돌아감 / false로 하면 원이 돌지 않음
+			}
+		}
+	}
+	window.onload = function() {
+		let ctx = document.getElementById('canvas').getContext("2d");
+		new Chart(ctx, config); // ctx : 그림 그리는 위치 , config :그림그리는 데이터
+	}
+</script>
+
+</body>
+</html>

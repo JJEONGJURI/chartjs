@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>막대그래프와 선그래프</title>
+</head>
+<body>
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js">
+</script>
+</body>
+	<div style="width: 75%"><canvas id="canvas"></canvas>
+</div>
+<script type="text/javascript">
+
+let MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+let chartData = {
+		labels : MONTHS, //1월부터 12월 까지 x축 내용으로 할거다
+		datasets : [ //보여질 데이터 부분
+			{
+				type : 'line',
+				borderColor : "#FF00FF",
+				borderWidth:1, //선 굵기
+				label : '영업부',
+				fill : false, //기본값 :true -> true는 선 아래쪽 색을 채워준다
+				data : [10,15,25,55,-25,-65,30,56,78,12,50,25]
+			},{
+				type : 'bar',
+				label : '영업부', //범례에 표시되는 내용
+				backgroundColor : "#A566FF",
+				data : [10,15,25,55,-25,-65,30,56,78,12,50,25],
+				borderColor : 'white',
+				borderWidth:2			
+			},{
+				type : 'line',
+				fill : false,
+				label : '총무부',
+				borderColor : "#00FF00",
+				data : [23,15,25,35,25,62,10,23,65,45,56,58],
+			},{
+				type : 'bar',
+				label : '총무부',
+				backgroundColor : "#86E57F",
+				data : [23,15,25,35,25,62,10,23,65,45,56,58],
+			}]
+};
+window.onload = function() {
+	var ctx = document.getElementById('canvas').getContext('2d');
+	//ctx : 차트의 위치, getContext('2d')는 안써도 됨 
+	new Chart(ctx, {
+		//차트에 그림 그리는 영역 > ctx
+		type: 'line', //line -> bar라고 써도됨 : type : 어떤그래프 쓸지 
+		data: chartData,
+		options : {
+			responsive : true,
+			title : {display : true, //반응형 처리
+					 text : '막대그래프와 선그래프'
+			},
+			legend : {display : false},//legend : 범례 // False 라고 하면 범례없음 기본이 true임
+			scales : {
+				yAxes : [{ //y축 조건
+					display : true, //false로 하면 y축 안보임
+					scaleLabel : { //y축 라벨
+						display : true,
+						labelString : "부서별 실적 증가율"
+					}
+				}]
+			}
+		}
+	});
+};
+</script>
+</html>
